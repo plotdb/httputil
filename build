@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+echo "prepare..."
+rm -rf dist
+mkdir -p dist
+rm -rf .built
+mkdir -p .built
+
+echo "building qs.ls -> qs.js ..."
+npx lsc -cp --no-header src/qs.ls > dist/qs.js
+echo "minify qs.js -> qs.min.js ..."
+npx uglifyjs dist/qs.js > dist/qs.min.js
+
+echo "building cookie.ls -> cookie.js ..."
+npx lsc -cp --no-header src/cookie.ls > dist/cookie.js
+echo "minify cookie.js -> cookie.min.js ..."
+npx uglifyjs dist/cookie.js > dist/cookie.min.js
+
+echo "building httputil.ls -> httputil.js ..."
+cp dist/* .built
+npx lsc -cp --no-header src/httputil.ls > .built/httputil.js
+
+echo "bundling httputil.js ..."
+npx browserify -s httputil .built/httputil.js > dist/httputil.js
+echo "minify bundled httputil.js -> httputil.min.js ..."
+npx uglifyjs dist/httputil.js > dist/httputil.min.js
+
+echo "copy dist to web ..."
+rm -rf web/static/assets/lib/httputil/dev/
+mkdir -p web/static/assets/lib/httputil/dev/
+cp -R dist/* web/static/assets/lib/httputil/dev/
+rm -rf .built
