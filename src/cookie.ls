@@ -4,6 +4,8 @@ module.exports = (k,v,o) ->
     o = if typeof(o) == \string => o = {expires: o} # backward compatibility
     else o or {}
     if !o.path => o.path = \/ 
+    # cookie value may not be expected if use with different paths.
+    # avoid using path option to prevent confusion
     o.path = encodeURIComponent(o.path)
     for _k,_v of o => r += ";#_k=#_v"
     return document.cookie = "#{encodeURIComponent k}=#{encodeURIComponent v}" + r
