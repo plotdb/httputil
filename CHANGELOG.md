@@ -1,5 +1,11 @@
 # Change Logs
 
+## v0.0.3
+
+ - extend cookie api to accept an object for cookie options
+ - upgrade modules to fix vulnerabilities
+
+
 ## v0.0.2
 
  - speed up building by replacing `npx` with `./node_modules/.bin/`

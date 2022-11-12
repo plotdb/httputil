@@ -1,5 +1,9 @@
-module.exports = (k,v,expire) ->
-  if v => return document.cookie = "#k=#v" + (if expire => ";expires=#expire" else "")
+module.exports = (k,v,o) ->
+  if v =>
+    r = ""
+    if typeof(o) == \object => for _k,_v of o => r += ";#_k=#_v"
+    else if typeof(o) == \string => r = ";expires=#o" # backward compatibility
+    return document.cookie = "#k=#v" + r
   hash = {}
   (document.cookie or '')
     .split(\;)
