@@ -1,21 +1,23 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.httputil = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 (function(){
   module.exports = function(k, v, o){
-    var r, _k, yet$, _v, hash;
+    var r, _k, _v, hash;
     if (v) {
       r = "";
-      if (typeof o === 'object') {
-        for (_k in yet$ = true, o) {
-          _v = o[_k];
-          yet$ = false;
-          r += ";" + _k + "=" + _v;
-        } if (yet$) {
-          if (typeof o === 'string') {
-            r = ";expires=" + o;
-          }
+      o = typeof o === 'string'
+        ? o = {
+          expires: o
         }
+        : o || {};
+      if (!o.path) {
+        o.path = '/';
       }
-      return document.cookie = (k + "=" + v) + r;
+      o.path = encodeURIComponent(o.path);
+      for (_k in o) {
+        _v = o[_k];
+        r += ";" + _k + "=" + _v;
+      }
+      return document.cookie = (encodeURIComponent(k) + "=" + encodeURIComponent(v)) + r;
     }
     hash = {};
     (document.cookie || '').split(';').map(function(it){

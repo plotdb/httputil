@@ -1,20 +1,22 @@
 (function(){
   module.exports = function(k, v, o){
-    var r, _k, yet$, _v, hash;
+    var r, _k, _v, hash;
     if (v) {
       r = "";
-      if (typeof o === 'object') {
-        for (_k in yet$ = true, o) {
-          _v = o[_k];
-          yet$ = false;
-          r += ";" + _k + "=" + _v;
-        } if (yet$) {
-          if (typeof o === 'string') {
-            r = ";expires=" + o;
-          }
+      o = typeof o === 'string'
+        ? o = {
+          expires: o
         }
+        : o || {};
+      if (!o.path) {
+        o.path = '/';
       }
-      return document.cookie = (k + "=" + v) + r;
+      o.path = encodeURIComponent(o.path);
+      for (_k in o) {
+        _v = o[_k];
+        r += ";" + _k + "=" + _v;
+      }
+      return document.cookie = (encodeURIComponent(k) + "=" + encodeURIComponent(v)) + r;
     }
     hash = {};
     (document.cookie || '').split(';').map(function(it){

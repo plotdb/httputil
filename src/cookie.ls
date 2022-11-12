@@ -1,9 +1,12 @@
 module.exports = (k,v,o) ->
   if v =>
     r = ""
-    if typeof(o) == \object => for _k,_v of o => r += ";#_k=#_v"
-    else if typeof(o) == \string => r = ";expires=#o" # backward compatibility
-    return document.cookie = "#k=#v" + r
+    o = if typeof(o) == \string => o = {expires: o} # backward compatibility
+    else o or {}
+    if !o.path => o.path = \/ 
+    o.path = encodeURIComponent(o.path)
+    for _k,_v of o => r += ";#_k=#_v"
+    return document.cookie = "#{encodeURIComponent k}=#{encodeURIComponent v}" + r
   hash = {}
   (document.cookie or '')
     .split(\;)

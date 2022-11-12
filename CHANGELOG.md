@@ -1,5 +1,12 @@
 # Change Logs
 
+## v0.0.4
+
+ - (breaking change) let cookie by default set to `/`, while can be overwritten with option.
+ - proper encode cookie options and values
+ - upgrade modules to fix vulnerabilities
+
+
 ## v0.0.3
 
  - extend cookie api to accept an object for cookie options
