@@ -1,5 +1,10 @@
 # Change Logs
 
+## v0.0.5
+
+ - path encoding should use `encodeURI` instead of `encodeURIComponent` 
+
+
 ## v0.0.4
 
  - (breaking change) let cookie by default set to `/`, while can be overwritten with option.

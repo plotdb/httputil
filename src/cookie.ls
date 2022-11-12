@@ -6,7 +6,7 @@ module.exports = (k,v,o) ->
     if !o.path => o.path = \/ 
     # cookie value may not be expected if use with different paths.
     # avoid using path option to prevent confusion
-    o.path = encodeURIComponent(o.path)
+    o.path = encodeURI(o.path)
     for _k,_v of o => r += ";#_k=#_v"
     return document.cookie = "#{encodeURIComponent k}=#{encodeURIComponent v}" + r
   hash = {}

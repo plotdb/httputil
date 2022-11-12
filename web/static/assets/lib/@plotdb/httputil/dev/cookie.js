@@ -11,7 +11,7 @@
       if (!o.path) {
         o.path = '/';
       }
-      o.path = encodeURIComponent(o.path);
+      o.path = escape(o.path);
       for (_k in o) {
         _v = o[_k];
         r += ";" + _k + "=" + _v;
