@@ -1,5 +1,10 @@
 # Change Logs
 
+## v0.0.6
+
+ - add `datefmt`
+
+
 ## v0.0.5
 
  - path encoding should use `encodeURI` instead of `encodeURIComponent` 

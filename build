@@ -10,6 +10,8 @@ echo "building qs.ls -> qs.js ..."
 ./node_modules/.bin/lsc -cp --no-header src/qs.ls > dist/qs.js
 echo "minify qs.js -> qs.min.js ..."
 ./node_modules/.bin/uglifyjs dist/qs.js -c -m > dist/qs.min.js
+echo "building datefmt.ls -> datefmt.js ..."
+./node_modules/.bin/lsc -cp --no-header src/datefmt.ls > dist/datefmt.js
 
 echo "building cookie.ls -> cookie.js ..."
 ./node_modules/.bin/lsc -cp --no-header src/cookie.ls > dist/cookie.js

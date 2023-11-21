@@ -1,3 +1,3 @@
-require! <[./cookie ./qs]>
+require! <[./cookie ./qs ./datefmt]>
 
-module.exports = {cookie, qs}
+module.exports = {cookie, qs, datefmt}

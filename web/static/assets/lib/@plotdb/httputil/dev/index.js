@@ -12,7 +12,7 @@
       if (!o.path) {
         o.path = '/';
       }
-      o.path = escape(o.path);
+      o.path = encodeURI(o.path);
       for (_k in o) {
         _v = o[_k];
         r += ";" + _k + "=" + _v;
@@ -33,16 +33,40 @@
 
 },{}],2:[function(require,module,exports){
 (function(){
-  var cookie, qs;
-  cookie = require('./cookie');
-  qs = require('./qs');
-  module.exports = {
-    cookie: cookie,
-    qs: qs
+  module.exports = function(d, o){
+    var ret;
+    o == null && (o = {});
+    d = d instanceof Date
+      ? d
+      : d
+        ? new Date(d)
+        : new Date();
+    ret = [d.getYear() + 1900, d.getMonth() + 1, d.getDate()].map(function(it){
+      return (it + "").padStart(2, '0');
+    }).join('/');
+    if (o.time == null || o.time) {
+      ret += " " + [d.getHours(), d.getMinutes(), d.getSeconds()].map(function(it){
+        return (it + "").padStart(2, '0');
+      }).join(':');
+    }
+    return ret;
   };
 }).call(this);
 
-},{"./cookie":1,"./qs":3}],3:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
+(function(){
+  var cookie, qs, datefmt;
+  cookie = require('./cookie');
+  qs = require('./qs');
+  datefmt = require('./datefmt');
+  module.exports = {
+    cookie: cookie,
+    qs: qs,
+    datefmt: datefmt
+  };
+}).call(this);
+
+},{"./cookie":1,"./datefmt":2,"./qs":4}],4:[function(require,module,exports){
 (function(){
   var local;
   local = {};
@@ -72,5 +96,5 @@
   };
 }).call(this);
 
-},{}]},{},[2])(2)
+},{}]},{},[3])(3)
 });
