@@ -1,5 +1,11 @@
 # Change Logs
 
+## v0.0.7
+
+ - support `invalid` option in `datefmt` and handle bad input properly
+ - reorg files structure
+
+
 ## v0.0.6
 
  - add `datefmt`

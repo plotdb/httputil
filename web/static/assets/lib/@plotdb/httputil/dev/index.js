@@ -40,7 +40,12 @@
       ? d
       : d
         ? new Date(d)
-        : new Date();
+        : arguments.length && (d == null || isNaN(d))
+          ? undefined
+          : new Date();
+    if (d == null || isNaN(d.getTime())) {
+      return o.invalid || undefined;
+    }
     ret = [d.getYear() + 1900, d.getMonth() + 1, d.getDate()].map(function(it){
       return (it + "").padStart(2, '0');
     }).join('/');

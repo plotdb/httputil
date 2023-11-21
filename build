@@ -10,8 +10,11 @@ echo "building qs.ls -> qs.js ..."
 ./node_modules/.bin/lsc -cp --no-header src/qs.ls > dist/qs.js
 echo "minify qs.js -> qs.min.js ..."
 ./node_modules/.bin/uglifyjs dist/qs.js -c -m > dist/qs.min.js
+
 echo "building datefmt.ls -> datefmt.js ..."
 ./node_modules/.bin/lsc -cp --no-header src/datefmt.ls > dist/datefmt.js
+echo "minify datefmt.js -> datefmt.min.js ..."
+./node_modules/.bin/uglifyjs dist/datefmt.js -c -m > dist/datefmt.min.js
 
 echo "building cookie.ls -> cookie.js ..."
 ./node_modules/.bin/lsc -cp --no-header src/cookie.ls > dist/cookie.js
@@ -21,6 +24,14 @@ echo "minify cookie.js -> cookie.min.js ..."
 echo "building index.ls -> index.js ..."
 cp dist/* .built
 ./node_modules/.bin/lsc -cp --no-header src/index.ls > .built/index.js
+
+# we expect users to load lib from subdir instead of files in root
+for n in qs cookie datefmt; do
+  echo "copy $n files into $n subdir ..."
+  mkdir -p dist/$n
+  cp dist/$n.js dist/$n/index.js
+  cp dist/$n.min.js dist/$n/index.min.js
+done
 
 echo "bundling index.js ..."
 ./node_modules/.bin/browserify -s httputil .built/index.js > dist/index.js

@@ -19,6 +19,7 @@ utility functions for commonly used http and browser context related functions, 
      - `date`: either a number (epoch) or a Date object. Use `new Date()` if omitted.
      - `opt`: an option object with following fields:
        - `time`: show time if true. Default true if omitted.
+       - `invalid`: placeholder text when the given date is invalid. `undefined` will be used if omitted.
 
 
 # License

@@ -3,7 +3,7 @@
   "name": "@plotdb/httputil",
   "license": "MIT",
   "description": "util functions for http and browser context",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "browser": "dist/index.min.js",
   "main": "dist/index.min.js",
   "files": [
