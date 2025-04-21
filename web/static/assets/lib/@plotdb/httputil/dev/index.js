@@ -32,6 +32,11 @@
 }).call(this);
 
 },{}],2:[function(require,module,exports){
+/*
+new Date()
+  .toLocaleString("zh-TW", {timeZoneName: "short", hour12: false})
+  .replace(/[\[\]]/g,'')
+*/
 (function(){
   module.exports = function(d, o){
     var ret;

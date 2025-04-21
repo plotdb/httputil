@@ -1,3 +1,11 @@
+# consider using this, which support timezone (GMT) information
+/*
+new Date()
+  .toLocaleString("zh-TW", {timeZoneName: "short", hour12: false})
+  .replace(/[\[\]]/g,'')
+*/
+
+
 module.exports = (d,o = {}) ->
   d = if d instanceof Date => d
   else if d => new Date(d)

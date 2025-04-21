@@ -1,3 +1,8 @@
+/*
+new Date()
+  .toLocaleString("zh-TW", {timeZoneName: "short", hour12: false})
+  .replace(/[\[\]]/g,'')
+*/
 (function(){
   module.exports = function(d, o){
     var ret;
